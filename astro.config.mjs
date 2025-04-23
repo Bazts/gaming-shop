@@ -14,7 +14,9 @@ export default defineConfig({
     ]
   },
   integrations: [react()],
-  adapter: netlify(),
+  adapter: netlify({
+    edgeMiddleware: true
+  }),
   output: 'server',
       session: {
       driver: "redis",

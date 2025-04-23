@@ -7,7 +7,7 @@ export const RegisterForm = () => {
     const handleSumit = async (formData: Record<string, any>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = 'http://localhost:5555/api/auth/register'
+      const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/auth/register'
       const res = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {

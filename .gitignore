@@ -25,3 +25,6 @@ pnpm-debug.log*
 .idea/
 # git config --global credential.helper wincred
 
+
+# Local Netlify folder
+.netlify

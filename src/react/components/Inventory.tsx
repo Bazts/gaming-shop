@@ -10,7 +10,7 @@ export const Inventory = () => {
       try {
         const apiEndpoint = 'http://localhost:5555/api/products'
         const res = await fetch(apiEndpoint, {
-          method: 'GET'
+          method: 'GET',
         })
 
         const data = await res.json()

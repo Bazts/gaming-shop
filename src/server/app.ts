@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(express.json())
 app.use(cors({
-  origin: 'http://localhost:4321',
+  origin: 'https://we-are-g.netlify.app',
   credentials: true
 }))
 
