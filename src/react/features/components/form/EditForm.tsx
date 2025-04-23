@@ -13,7 +13,7 @@ export const EditForm = ({
   useEffect(() => {
     const getCurrentProduct = async () => {
       try {
-        const res = await fetch(`http://localhost:5555/api/products/${productId}`, {
+        const res = await fetch(`https://gaming-shop-5846.onrender.com/api/products/${productId}`, {
           method: "GET",
         });
         const data = await res.json();
@@ -38,7 +38,7 @@ export const EditForm = ({
   const handleSubmit = async (formData: Record<string, any>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = `http://localhost:5555/api/products/${productId}`
+      const apiEndpoint = `https://gaming-shop-5846.onrender.com/api/products/${productId}`
       const res = await fetch(apiEndpoint, {
         method: 'PUT',
         headers: {

@@ -8,7 +8,7 @@ export const Inventory = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiEndpoint = 'http://localhost:5555/api/products'
+        const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/products'
         const res = await fetch(apiEndpoint, {
           method: 'GET',
         })
@@ -34,7 +34,7 @@ export const Inventory = () => {
   const handleSubmit = async (formData: Record<any, string>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = 'http://localhost:5555/api/products'
+      const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/products'
       const res = await fetch(apiEndpoint, {
         method: 'POST',
         headers: {
@@ -63,7 +63,7 @@ export const Inventory = () => {
 
   const onDelete = async (productId: string) => {
     try {
-      const apiEndpoint = `http://localhost:5555/api/products/${productId}`
+      const apiEndpoint = `https://gaming-shop-5846.onrender.com/api/products/${productId}`
       const res = await fetch(apiEndpoint, {
         method: 'DELETE'
       })
