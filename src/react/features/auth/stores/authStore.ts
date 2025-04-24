@@ -14,7 +14,7 @@ interface AuthStore {
 export const useAuthStore = create<AuthStore>((set) => ({
   user: null,
   getUser: () => {
-    const localUser = localStorage.getItem('local_user')
+    const localUser = sessionStorage.getItem('local_user')
 
     if (!localUser) {
       return set({ user: null })

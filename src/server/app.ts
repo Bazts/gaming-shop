@@ -9,7 +9,7 @@ export const app = express();
 
 app.use(express.json())
 app.use(cors({
-  origin: 'https://we-are-g.netlify.app',
+  origin: 'https://we-are-gamers.netlify.app',
   credentials: true
 }))
 

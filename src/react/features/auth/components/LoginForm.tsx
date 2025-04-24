@@ -25,7 +25,7 @@ export const LoginForm = () => {
         throw new Error(data.message)
       }
 
-      localStorage.setItem('local_user', JSON.stringify(data.user))
+      sessionStorage.setItem('local_user', JSON.stringify(data.user))
       setUser(data.user)
       window.location.href = '/inventario'
     } catch (error) {

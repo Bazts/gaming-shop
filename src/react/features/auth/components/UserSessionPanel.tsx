@@ -5,7 +5,7 @@ export const UserSessionPanel = () => {
   const { user, setUser } = useAuthStore()
 
   useEffect(() => {
-    const localUser = localStorage.getItem('local_user')
+    const localUser = sessionStorage.getItem('local_user')
     console.log(localUser)
 
     if (!localUser) {
