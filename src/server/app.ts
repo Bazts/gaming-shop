@@ -3,6 +3,7 @@ import express from "express";
 import productRoutes from "./routes/productRoutes";
 import authRoutes from "./routes/authRoutes";
 import cors from 'cors'
+import { errorMiddleware } from "./middlewares/errorMiddleware";
 
 
 export const app = express();
@@ -17,4 +18,6 @@ app.use(cors({
 
 app.use("/api/products", productRoutes);
 app.use("/api/auth", authRoutes);
+
+app.use(errorMiddleware)
 

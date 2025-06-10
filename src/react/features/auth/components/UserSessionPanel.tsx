@@ -22,9 +22,9 @@ export const UserSessionPanel = () => {
 
       const { data } = res
 
+        window.location.href = '/'
         sessionStorage.removeItem('local_user')
         setUser(null)
-        window.location.href = '/'
       
     } catch (error) {
       

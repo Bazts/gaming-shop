@@ -15,7 +15,6 @@ export const getProducts: RouteHandler = async (req, res, next) => {
 };
 
 export const getCurrentProduct: RouteHandler = async (req, res, next) => {
-  console.log(req.params.id)
     try {
     const id = req.params.id;
     const product = await db.Product.findByPk(id);
@@ -86,7 +85,6 @@ export const updateProduct: RouteHandler = async (req, res, next) => {
  * Eliminar un producto
  */
 export const deleteProduct: RouteHandler = async (req, res, next) => {
-  console.log(req.params)
   try {
     const id = req.params.id;
 

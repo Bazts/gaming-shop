@@ -10,16 +10,19 @@ export const EditForm = ({
   const [isLoading, setIsLoading] = useState(false)
   const [success, setSuccess] = useState(false)
   const [product, setProduct] = useState({})
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     const getCurrentProduct = async () => {
       try {
+        setLoading(true)
         const apiEndpoint = `api/products/${productId}`
         const res = await api.get(apiEndpoint)
 
         const { data } = res
         
         setProduct(data)
+        setLoading(false)
       } catch (error) {
               const errorMessage = error instanceof Error
         ? error.message
@@ -53,7 +56,14 @@ export const EditForm = ({
     }
   }
 
+  if (loading) return null
+
   return (
+      <section
+    className="max-w-md mx-auto mt-10 bg-gray-800 text-white p-6 rounded-xl shadow-lg"
+  >
+    <h2 className="text-2xl font-semibold text-center mb-6">Editar Producto</h2>
+
     <Form onSubmit={handleSubmit}>
       <label htmlFor="name" className="block text-sm mb-1">Nombre</label>
       <input
@@ -114,5 +124,7 @@ export const EditForm = ({
       </button>
       <a href="/inventario" className="w-full block mt-2 text-center border border-blue-600 hover:bg-blue-900 text-white font-medium py-2 rounded-md transition">Volver</a>
     </Form>
+  </section>
+    
   )
 }
