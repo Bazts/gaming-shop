@@ -28,7 +28,6 @@ export const registerUser: RouteHandler = async (req, res) => {
 };
 
 export const loginUser: RouteHandler = async (req, res) => {
-  console.log('login')
   try {
     const { email, password } = req.body;
     if (!email || !password) {
