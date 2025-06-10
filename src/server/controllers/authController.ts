@@ -1,7 +1,9 @@
 import bcrypt from "bcrypt";
+import jwt from 'jsonwebtoken'
 
 import type { RouteHandler } from "../types/routeHandler";
 import { db } from "../config/sequelizeClient";
+import { JWT_SECRET } from "../config";
 
 export const registerUser: RouteHandler = async (req, res) => {
   try {
