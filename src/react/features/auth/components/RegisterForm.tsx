@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Form } from "../../components/form/Form";
+import { api } from "../../../../api/axios";
 
 export const RegisterForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -7,20 +8,8 @@ export const RegisterForm = () => {
     const handleSumit = async (formData: Record<string, any>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/auth/register'
-      const res = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.message)
-      }
+      const apiEndpoint = '/api/auth/register'
+      const res = await api.post(apiEndpoint, formData)
 
       window.location.href = '/iniciar-sesion'
     } catch (error) {

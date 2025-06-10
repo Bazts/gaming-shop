@@ -9,6 +9,12 @@ const sequelize = new Sequelize(String(DATABASE_URL), {
     timestamps: true,
     freezeTableName: true,
   },
+  dialectOptions: {
+    ssl: {
+      require: true,
+      rejectUnauthorized: false, // 🔐 Acepta certificados autofirmados
+    }
+  }
 });
 
 // Modelo de Usuario

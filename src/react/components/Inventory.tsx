@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Form } from "../features/components/form/Form"
+import { api } from "../../api/axios"
 
 export const Inventory = () => {
   const [products, setProducts] = useState([])
@@ -8,16 +9,10 @@ export const Inventory = () => {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/products'
-        const res = await fetch(apiEndpoint, {
-          method: 'GET',
-        })
+        const apiEndpoint = '/api/products'
+        const res = await api.get(apiEndpoint)
 
-        const data = await res.json()
-
-        if (!res.ok) {
-          throw new Error(data.message)
-        }
+        const {data } = res
 
         setProducts(data)
       } catch (error) {
@@ -34,20 +29,10 @@ export const Inventory = () => {
   const handleSubmit = async (formData: Record<any, string>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/products'
-      const res = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
+      const apiEndpoint = '/api/products'
+      const res = await api.post(apiEndpoint, formData)
 
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.message)
-      }
+      const { data } = res
 
       setProducts(data)
     } catch (error) {
@@ -63,18 +48,12 @@ export const Inventory = () => {
 
   const onDelete = async (productId: string) => {
     try {
-      const apiEndpoint = `https://gaming-shop-5846.onrender.com/api/products/${productId}`
-      const res = await fetch(apiEndpoint, {
-        method: 'DELETE'
-      })
+      const apiEndpoint = `/api/products/${productId}`
 
-      const data = await res.json()
-      console.log(data)
+      const res = await api.delete(apiEndpoint)
 
-      if (!res.ok) {
-        throw new Error(data.message)
-      }
-
+      const { data } = res
+      
       setProducts(data)
     } catch (error) {
       const errorMessage = error instanceof Error

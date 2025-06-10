@@ -162,12 +162,11 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
-  "postinstall": true,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": null
+        "value": "postgres://avnadmin:AVNS_zNrTSxduCaSBugtBuFS@pg-210aa565-brayanzambrano606-1ad6.g.aivencloud.com:20876/we_are_gamers?sslmode=require"
       }
     }
   },

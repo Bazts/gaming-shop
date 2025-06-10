@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Form } from "./Form"
+import { api } from "../../../../api/axios"
 
 export const EditForm = ({
   productId,
@@ -13,15 +14,11 @@ export const EditForm = ({
   useEffect(() => {
     const getCurrentProduct = async () => {
       try {
-        const res = await fetch(`https://gaming-shop-5846.onrender.com/api/products/${productId}`, {
-          method: "GET",
-        });
-        const data = await res.json();
+        const apiEndpoint = `api/products/${productId}`
+        const res = await api.get(apiEndpoint)
 
-        if (!res.ok) {
-          throw new Error(data.message)
-        }
-
+        const { data } = res
+        
         setProduct(data)
       } catch (error) {
               const errorMessage = error instanceof Error
@@ -33,26 +30,14 @@ export const EditForm = ({
     }
 
     getCurrentProduct()
-  })
+  }, [])
   
   const handleSubmit = async (formData: Record<string, any>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = `https://gaming-shop-5846.onrender.com/api/products/${productId}`
-      const res = await fetch(apiEndpoint, {
-        method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
-
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.message)
-      }
-
+      const apiEndpoint = `/api/products/${productId}`
+      const res = await api.put(apiEndpoint, formData)
+      
       setSuccess(true)
       setTimeout(() => {
         setSuccess(false)
@@ -67,7 +52,7 @@ export const EditForm = ({
       setIsLoading(false)
     }
   }
-  
+
   return (
     <Form onSubmit={handleSubmit}>
       <label htmlFor="name" className="block text-sm mb-1">Nombre</label>
@@ -108,8 +93,7 @@ export const EditForm = ({
             type="checkbox"
             className="h-4 w-4 text-blue-500 mr-1.5 bg-gray-700 border-gray-600 rounded focus:ring-blue-400"
             name="available"
-            defaultChecked={!!product?.available}
-            
+            defaultChecked={product?.available}
           /></label>
       </div>
 

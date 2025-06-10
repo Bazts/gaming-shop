@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form } from "../../components/form/Form";
 import { useAuthStore } from "../stores/authStore";
+import { api } from "../../../../api/axios";
 
 export const LoginForm = () => {
   const [isLoading, setIsLoading] = useState(false)
@@ -10,20 +11,11 @@ export const LoginForm = () => {
   const handleSumit = async (formData: Record<string, any>) => {
     try {
       setIsLoading(true)
-      const apiEndpoint = 'https://gaming-shop-5846.onrender.com/api/auth/login'
-      const res = await fetch(apiEndpoint, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(formData)
-      })
+      const apiEndpoint = '/api/auth/login'
+      const res = await api.post(apiEndpoint, formData)
 
-      const data = await res.json()
-
-      if (!res.ok) {
-        throw new Error(data.message)
-      }
+      const { data } = res
+      console.log(data)
 
       sessionStorage.setItem('local_user', JSON.stringify(data.user))
       setUser(data.user)
@@ -60,7 +52,6 @@ export const LoginForm = () => {
             className="w-full p-3 rounded-md bg-gray-700 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
             placeholder="********"
             name="password"
-            required
           />
         </div>
         <button
